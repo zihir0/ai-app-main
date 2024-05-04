@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Dress Code Scanner{% endblock %}
+
+{% block content %}
+    <h2>Dress Code Scanner</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="image">
+        <button type="submit">Scan</button> 
+    </form>
+    {% if result %}
+        <p>{{ result }}</p>
+    {% endif %}
+{% endblock %}

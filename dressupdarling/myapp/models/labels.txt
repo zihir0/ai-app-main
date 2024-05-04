@@ -1,0 +1,10 @@
+0 Tshirts (Allowed)
+1 Jeans (Allowed)
+2 Shoes (Allowed)
+3 Hoodies (Allowed)
+4 Pencil Skirts (Allowed)
+5 Blouse (Allowed)
+6 Dress (Allowed)
+7 Crop Top (Not Allowed)
+8 Sleeveless (Not Allowed)
+9 Tube (Not Allowed) 10

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+    <header>
+        <h1>Dress Code</h1>
+    </header>
+    <div class="container">
+        <div class="widget">
+            <video autoplay="true" id="videoElement" style="transform: scaleX(-1);"></video>
+            <br>
+            <button onclick="captureFrame()">Capture Frame</button>
+        </div>
+        <h2> Dresscode scanner</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token%}
+            <input type="file" name="image">
+            <button type="submit">scan</button>
+        </form>
+        {% if result%}
+        <h2>Result</h2>
+        <p>{{result}}</p>
+        {% endif %}
+            <p>{{result}}</p>
+        {% endif}
+    </div>
+
+    <style>
+        /* Your existing CSS styles */
+    </style>
+
+    <script>
+        let stream;
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function(s) {
+                stream = s;
+                var videoElement = document.getElementById('videoElement');
+                videoElement.srcObject = stream;
+            })
+            .catch(function(error) {
+                console.error('Error accessing the webcam:', error);
+            });
+
+        function captureFrame() {
+            var videoElement = document.getElementById('videoElement');
+            var canvas = document.createElement('canvas');
+            var context = canvas.getContext('2d');
+            canvas.width = videoElement.videoWidth;
+            canvas.height = videoElement.videoHeight;
+            context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+            var imageDataURL = canvas.toDataURL('image/png');
+            console.log(imageDataURL); // You can send this data to your backend for processing
+        }
+    </script>
+{% endblock %}
